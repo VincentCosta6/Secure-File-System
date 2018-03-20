@@ -30,7 +30,6 @@ import javax.crypto.spec.IvParameterSpec;
  * @author costa
  */
 public class AES256 {
-    public static String key = "ilovebuttcheeks";
     
     
     public static SecretKey NewKey(char[] password, byte[] salt) throws NoSuchAlgorithmException, InvalidKeySpecException

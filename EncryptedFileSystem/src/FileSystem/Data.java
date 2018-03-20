@@ -17,11 +17,11 @@ import secure.file.system.SecureFileSystem;
  */
 public class Data implements Serializable{
     
-    public byte[] salt;
-    public byte[] check;
+    private byte[] salt;
+    private byte[] check;
     
-    public static transient ArrayList<File> Files = new ArrayList();
-    public static transient ArrayList<Root> Directories = new ArrayList();
+    private static transient ArrayList<File> Files = new ArrayList();
+    private static transient ArrayList<Root> Directories = new ArrayList();
     
     public Data(String salt, String check)
     {
@@ -50,20 +50,25 @@ public class Data implements Serializable{
     {
         Data myData =null;
         java.io.File salts = new java.io.File((Root.masterPath+"\\MasterRoot\\salts"));
-        System.out.println(Root.masterPath);
         if(salts.exists())
         {
             System.out.println("Salts found, loading into data...");
             myData = (Data)File.ReadFromFile(salts);
+            newConstruct(Root.masterRoot);
         }
         else
         {
-            System.out.println("Salts not found, creating data...");
-            myData = new Data(new String(new SecureRandom().generateSeed(8)), SHA256.Encrypt(SecureFileSystem.password));
-            File.WriteToFile(myData, File.newFile(Root.masterRoot, "salts"));
             
         }
         return myData;
+    }
+    public static boolean create(String password)
+    {
+        Data myData =null;
+        System.out.println("Salts not found, creating data...");
+        myData = new Data(new String(new SecureRandom().generateSeed(8)), SHA256.Encrypt(password));
+        File.WriteToFile(myData, File.newFile(Root.masterRoot, "salts"));
+        return true;
     }
     public static File returnFileByName(String name)
     {

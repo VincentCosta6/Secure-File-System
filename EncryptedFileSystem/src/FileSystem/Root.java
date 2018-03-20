@@ -20,7 +20,7 @@ public class Root implements Serializable{
     public static Root recentRoot;
     static{
         ROOTS = new ArrayList();
-        masterPath = "C:\\Users\\costa\\Desktop\\Locker";
+        masterPath = "C:\\Users\\costa\\OneDrive\\Documents\\GitHub\\Secure-File-System\\Locker";
         masterRoot = new Root("MasterRoot",null);
         
     }
