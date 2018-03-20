@@ -3,35 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package secure.file.system;
+package encrypted.file.system;
 
 import FileSystem.Data;
-import FileSystem.File;
 import FileSystem.Root;
 import Security.AES256;
 import Security.SHA256;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidParameterSpecException;
-import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.crypto.BadPaddingException;
-import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 
 /**
  *
  * @author costa
  */
-public class SecureFileSystem {
+public class EncryptedFileSystem {
 
     /**
      * @param args the command line arguments
@@ -46,6 +30,11 @@ public class SecureFileSystem {
     {
         return Data.Startup(Root.masterRoot.myFile);
     }
+    public static boolean setData(Data _data)
+    {
+        data = _data;
+        return true;
+    }
     /**
      * Encrypts the password given and checks it against the encrypted password, immune to time attacks
      * @param guess the password to check
@@ -53,19 +42,11 @@ public class SecureFileSystem {
      */
     public static boolean checkPassword(String guess)
     {
+        System.out.println(data);
         return SHA256.PasswordCheck(guess, new String(data.getCheck()));
     }
     static
     {
         java.security.Security.setProperty("crypto.policy", "unlimited");
-    }
-    private static void main(String[] args)
-    {
-        Data data = Data.Startup(Root.masterRoot.myFile);
-        
-        
-        Data.Construct(Root.masterRoot);
-        
-        
     }
 }

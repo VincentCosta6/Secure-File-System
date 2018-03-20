@@ -9,7 +9,7 @@ import Security.SHA256;
 import java.io.Serializable;
 import java.security.SecureRandom;
 import java.util.ArrayList;
-import secure.file.system.SecureFileSystem;
+import encrypted.file.system.EncryptedFileSystem;
 
 /**
  *
@@ -49,25 +49,22 @@ public class Data implements Serializable{
     public static Data Startup(java.io.File folder)
     {
         Data myData =null;
-        java.io.File salts = new java.io.File((Root.masterPath+"\\MasterRoot\\salts"));
+        java.io.File salts = new java.io.File((Root.masterPath+"\\salts"));
         if(salts.exists())
         {
             System.out.println("Salts found, loading into data...");
             myData = (Data)File.ReadFromFile(salts);
             newConstruct(Root.masterRoot);
         }
-        else
-        {
-            
-        }
         return myData;
     }
     public static boolean create(String password)
     {
-        Data myData =null;
+        Data myData = null;
         System.out.println("Salts not found, creating data...");
         myData = new Data(new String(new SecureRandom().generateSeed(8)), SHA256.Encrypt(password));
         File.WriteToFile(myData, File.newFile(Root.masterRoot, "salts"));
+        EncryptedFileSystem.setData(myData);
         return true;
     }
     public static File returnFileByName(String name)

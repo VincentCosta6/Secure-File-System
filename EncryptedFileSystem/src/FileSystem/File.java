@@ -17,7 +17,7 @@ import java.io.PrintWriter;
 import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import secure.file.system.SecureFileSystem;
+import encrypted.file.system.EncryptedFileSystem;
 
 /**
  *
@@ -200,9 +200,10 @@ public class File implements Serializable{
     {
         Object o = null;
         FileInputStream fout = null;
+        ObjectInputStream oos = null;
         try {
-            fout = new FileInputStream(f.getPath());   
-            ObjectInputStream oos = new ObjectInputStream(fout);
+            fout = new FileInputStream(f.getAbsolutePath());   
+            oos = new ObjectInputStream(fout);
             o = oos.readObject();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(File.class.getName()).log(Level.SEVERE, null, ex);
@@ -213,6 +214,7 @@ public class File implements Serializable{
         } finally {
             try {
                 fout.close();
+                oos.close();
             } catch (IOException ex) {
                 Logger.getLogger(File.class.getName()).log(Level.SEVERE, null, ex);
             }
