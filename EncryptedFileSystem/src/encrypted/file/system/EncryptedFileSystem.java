@@ -8,6 +8,7 @@ package encrypted.file.system;
 import FileSystem.Data;
 import FileSystem.Root;
 import Security.AES256;
+import Security.BCrypt;
 import Security.SHA256;
 import javax.crypto.SecretKey;
 
@@ -42,8 +43,7 @@ public class EncryptedFileSystem {
      */
     public static boolean checkPassword(String guess)
     {
-        System.out.println(data);
-        return SHA256.PasswordCheck(guess, new String(data.getCheck()));
+        return BCrypt.checkpw(guess, new String(data.getCheck()));
     }
     static
     {
