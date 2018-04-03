@@ -20,7 +20,7 @@ public class Root implements Serializable{
     public static Root recentRoot;
     static{
         ROOTS = new ArrayList();
-        masterPath = "C:\\Users\\costa\\OneDrive\\Documents\\GitHub\\Secure-File-System\\Locker\\";
+        masterPath = "D:\\Github\\Secure-File-System\\Locker\\MasterRoot";
         masterRoot = new Root("MasterRoot",null);
         
     }
@@ -43,8 +43,8 @@ public class Root implements Serializable{
         }
         else
         {
-            new java.io.File(masterPath+"\\"+"MasterRoot").mkdirs();
-            myFile = new java.io.File(masterPath+"\\"+"MasterRoot");
+            new java.io.File(masterPath).mkdirs();
+            myFile = new java.io.File(masterPath);
         }
     }
     private Root(String name, ArrayList<File> files, Root parent)

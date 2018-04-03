@@ -23,7 +23,7 @@ public class SecureFileApp {
             Data.create("Wow");
             Data.Construct(Root.masterRoot);
         }
-        boolean result = EncryptedFileSystem.checkPassword("Wow");
+        boolean result = EncryptedFileSystem.checkPassword("Alright");
         System.out.println(result);
     }
     
