@@ -20,7 +20,7 @@ public class Root implements Serializable{
     public static Root recentRoot;
     static{
         ROOTS = new ArrayList();
-        masterPath = "D:\\Github\\Secure-File-System\\Locker\\MasterRoot";
+        masterPath = "";
         masterRoot = new Root("MasterRoot",null);
         
     }
@@ -130,7 +130,7 @@ public class Root implements Serializable{
         if(!okies&&root.name.contentEquals("MasterRoot"))
         {
             okies=true;
-            retrace+= masterPath+"\\MasterRoot";
+            retrace+= masterPath;
             return root.name;
         }
         else

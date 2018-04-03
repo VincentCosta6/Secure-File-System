@@ -42,6 +42,9 @@ public class EncryptedFileSystem {
         data = _data;
         return true;
     }
+    public static Data getData(){
+        return data;
+    }
     /**
      * Encrypts the password given and checks it against the encrypted password, immune to time attacks
      * @param guess the password to check

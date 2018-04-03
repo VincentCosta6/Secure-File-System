@@ -5,6 +5,7 @@
  */
 package securefileapp;
 import FileSystem.Data;
+import FileSystem.File;
 import FileSystem.Root;
 import encrypted.file.system.EncryptedFileSystem;
 /**
@@ -21,13 +22,15 @@ public class SecureFileApp {
     public static void main(String[] args) {
         
         Data data = EncryptedFileSystem.init(forPC);
-        if(data==null)
+        if(data == null)
         {
-            Data.create("Wow", 15);
+            Data.create("Complexity Check", 15);
             Data.Construct(Root.masterRoot);
         }
-        boolean result = EncryptedFileSystem.checkPassword("Okay");
-        System.out.println(result);
+        //boolean result = EncryptedFileSystem.checkPassword("Okay");
+        //System.out.println(result);
+        Root root = Root.NewRoot("newer", Root.masterRoot);
+        System.out.println(Data.returnRoots().get(0).name);
     }
     
 }

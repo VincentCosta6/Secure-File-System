@@ -107,4 +107,12 @@ public class Data implements Serializable{
             }
         }
     }
+    public static ArrayList<File> returnFiles()
+    {
+        return Files;
+    }
+    public static ArrayList<Root> returnRoots()
+    {
+        return Directories;
+    }
 }
