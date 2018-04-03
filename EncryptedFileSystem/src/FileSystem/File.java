@@ -106,7 +106,7 @@ public class File implements Serializable{
         if(!okies&&root.name.contentEquals("MasterRoot"))
         {
             okies=true;
-            retrace+= masterPath+"\\MasterRoot";
+            retrace+= masterPath;
             return root.name;
         }
         else
@@ -172,7 +172,6 @@ public class File implements Serializable{
     {
         FileOutputStream fout = null;
         try {
-            System.out.println(f.myPath());
             fout = new FileOutputStream(f.myPath());
             ObjectOutputStream oos = new ObjectOutputStream(fout);
             oos.writeObject(o);
@@ -183,7 +182,6 @@ public class File implements Serializable{
                 p.close();
             } catch (FileNotFoundException ex1) {
                 java.io.File file = new java.io.File(f.myPath());
-                WriteToFile(o,f);
             }
         } catch (IOException ex) {
             Logger.getLogger(File.class.getName()).log(Level.SEVERE, null, ex);

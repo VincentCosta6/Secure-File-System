@@ -7,6 +7,7 @@ package encrypted.file.system;
 
 import FileSystem.Data;
 import FileSystem.Root;
+import static FileSystem.Root.masterRoot;
 import Security.AES256;
 import Security.BCrypt;
 import Security.SHA256;
@@ -27,8 +28,13 @@ public class EncryptedFileSystem {
      * Searches for salt file and constructs the File System
      * @return 
      */
-    public static Data init()
+    public static Data init(String path)
     {
+        if(path!=null)
+        {
+            Root.masterPath = path;
+            Root.masterRoot = new Root("MasterRoot",null);
+        }
         return Data.Startup(Root.masterRoot.myFile);
     }
     public static boolean setData(Data _data)

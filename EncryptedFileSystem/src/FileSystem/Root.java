@@ -31,7 +31,7 @@ public class Root implements Serializable{
     public UniqueID uuid;
     public Root Parent;
     public transient java.io.File myFile;
-    private Root(String name, Root parent)
+    public Root(String name, Root parent)
     {
         this.name=name;
         this.uuid=new UniqueID();
@@ -122,6 +122,7 @@ public class Root implements Serializable{
         retrace= "";
         myPath2(Parent);
         retrace+="\\"+this.name;
+        System.out.println(retrace);
         return retrace;
     }
     private String myPath2(Root root)

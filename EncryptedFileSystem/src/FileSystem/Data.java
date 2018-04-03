@@ -54,6 +54,7 @@ public class Data implements Serializable{
             System.out.println("Salts found, loading into data...");
             myData = (Data)File.ReadFromFile(salts);
             newConstruct(Root.masterRoot);
+            EncryptedFileSystem.setData(myData);
         }
         return myData;
     }

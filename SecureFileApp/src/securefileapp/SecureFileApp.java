@@ -16,14 +16,17 @@ public class SecureFileApp {
     /**
      * @param args the command line arguments
      */
+    static String forPC = "D:\\Github\\Secure-File-System\\Locker\\MasterRoot";
+    static String forLaptop = "C:\\Users\\costa\\OneDrive\\Documents\\GitHub\\Secure-File-System\\Locker\\MaterRoot";
     public static void main(String[] args) {
-        Data data = EncryptedFileSystem.init();
+        
+        Data data = EncryptedFileSystem.init(forPC);
         if(data==null)
         {
             Data.create("Wow", 15);
             Data.Construct(Root.masterRoot);
         }
-        boolean result = EncryptedFileSystem.checkPassword("Alright");
+        boolean result = EncryptedFileSystem.checkPassword("Okay");
         System.out.println(result);
     }
     
