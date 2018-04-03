@@ -20,7 +20,7 @@ public class SecureFileApp {
         Data data = EncryptedFileSystem.init();
         if(data==null)
         {
-            Data.create("Wow");
+            Data.create("Wow", 15);
             Data.Construct(Root.masterRoot);
         }
         boolean result = EncryptedFileSystem.checkPassword("Alright");

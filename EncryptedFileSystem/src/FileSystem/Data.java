@@ -5,6 +5,7 @@
  */
 package FileSystem;
 
+import Security.BCrypt;
 import Security.SHA256;
 import java.io.Serializable;
 import java.security.SecureRandom;
@@ -23,11 +24,9 @@ public class Data implements Serializable{
     private static transient ArrayList<File> Files = new ArrayList();
     private static transient ArrayList<Root> Directories = new ArrayList();
     
-    public Data(String salt, String check)
+    public Data(String hashed)
     {
-        this.salt=salt.getBytes();
-        this.check=check.getBytes();
-        System.out.println("Salt: "+salt);
+        this.check=hashed.getBytes();
         System.out.println("Check: "+check);
     }
     public String setSalt(String newSalt)
@@ -58,11 +57,12 @@ public class Data implements Serializable{
         }
         return myData;
     }
-    public static boolean create(String password)
+    public static boolean create(String password, int saltRounds)
     {
         Data myData = null;
         System.out.println("Salts not found, creating data...");
-        myData = new Data(new String(new SecureRandom().generateSeed(8)), SHA256.Encrypt(password));
+        String salt = BCrypt.gensalt(saltRounds);
+        myData = new Data(BCrypt.hashpw(password, salt));
         File.WriteToFile(myData, File.newFile(Root.masterRoot, "salts"));
         EncryptedFileSystem.setData(myData);
         return true;
