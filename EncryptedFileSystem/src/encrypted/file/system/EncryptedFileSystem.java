@@ -26,11 +26,12 @@ public class EncryptedFileSystem {
     private static Data data;
     /**
      * Searches for salt file and constructs the File System
+     * @param path where the master root is located
      * @return 
      */
     public static Data init(String path)
     {
-        if(path!=null)
+        if(path != null)
         {
             Root.masterPath = path;
             Root.masterRoot = new Root("MasterRoot",null);

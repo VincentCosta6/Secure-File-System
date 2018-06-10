@@ -21,7 +21,7 @@ public class SecureFileApp {
     static String forLaptop = "C:\\Users\\costa\\OneDrive\\Documents\\GitHub\\Secure-File-System\\Locker\\MaterRoot";
     public static void main(String[] args) {
         
-        Data data = EncryptedFileSystem.init(forPC);
+        Data data = EncryptedFileSystem.init(forLaptop);
         if(data == null)
         {
             Data.create("Complexity Check", 15);

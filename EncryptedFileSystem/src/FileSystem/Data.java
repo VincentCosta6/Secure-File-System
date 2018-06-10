@@ -47,7 +47,7 @@ public class Data implements Serializable{
     }
     public static Data Startup(java.io.File folder)
     {
-        Data myData =null;
+        Data myData = null;
         java.io.File salts = new java.io.File((Root.masterPath+"\\salts"));
         if(salts.exists())
         {
@@ -64,7 +64,7 @@ public class Data implements Serializable{
         System.out.println("Salts not found, creating data...");
         String salt = BCrypt.gensalt(saltRounds);
         myData = new Data(BCrypt.hashpw(password, salt));
-        File.WriteToFile(myData, File.newFile(Root.masterRoot, "salts"));
+        File.WriteToFile(myData, File.newFile(Root.masterRoot, "salts.txt"));
         EncryptedFileSystem.setData(myData);
         return true;
     }
@@ -97,7 +97,7 @@ public class Data implements Serializable{
         java.io.File[] directories = root.myFile.listFiles();
         for(java.io.File f:directories)
         {
-            if(f.isFile()&&(!f.getName().contentEquals("salts")))
+            if(f.isFile()&&(!f.getName().contentEquals("salts.txt")))
             {
                 Files.add(((File)File.ReadFromFile(f)));
             }
